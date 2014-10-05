@@ -2,8 +2,9 @@
 #define GATE_H
 
 #include <vector>
+#include "thread.h"
 
-class Gate{
+class Gate: public Thread{
 
     public:
 
@@ -12,6 +13,7 @@ class Gate{
         const char* getName() const;
         std::vector<Gate*> getAncestors() const;
         std::vector<Gate*> getSuccessors() const;
+        virtual void run();
         void addSuccessor(Gate* successor);
         void display(unsigned int indentation = 0) const;
         void update();

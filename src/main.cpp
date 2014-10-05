@@ -40,5 +40,23 @@ int main(){
     and1.addSuccessor(&not2);
     and1.display();
 
+    true1.start();
+    false1.start();
+    and1.start();
+    or1.start();
+    not1.start();
+    not2.start();
+
+    while(true){
+        and1.display();
+    }
+
+    true1.join();
+    false1.join();
+    and1.join();
+    or1.join();
+    not1.join();
+    not2.join();
+
     return 0;
 }

@@ -24,6 +24,12 @@ std::vector<Gate*> Gate::getSuccessors() const{
     return m_successors;
 }
 
+void Gate::run(){
+    while(true){
+        update();
+    }
+}
+
 void Gate::addAncestor(Gate* ancestor){
     m_ancestors.push_back(ancestor);
 }
