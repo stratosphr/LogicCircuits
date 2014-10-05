@@ -3,6 +3,7 @@
 #include "orGate.h"
 #include "notGate.h"
 #include "thread.h"
+#include "clockGate.h"
 
 using namespace std;
 
@@ -40,15 +41,23 @@ int main(){
     and1.addSuccessor(&not2);
     and1.display();
 
+    /* CLOCK */
+    NotGate not3;
+    ClockGate clock1;
+    clock1.setFrequency(100);
+    clock1.addSuccessor(&not3);
+
     true1.start();
     false1.start();
     and1.start();
     or1.start();
     not1.start();
     not2.start();
+    not3.start();
+    clock1.start();
 
     while(true){
-        and1.display();
+        not3.display();
     }
 
     true1.join();
@@ -57,6 +66,8 @@ int main(){
     or1.join();
     not1.join();
     not2.join();
+    not3.join();
+    clock1.join();
 
     return 0;
 }

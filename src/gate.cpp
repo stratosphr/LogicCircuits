@@ -65,6 +65,10 @@ void Gate::setName(const char* name){
     m_name = name;
 }
 
+void Gate::setOutput(bool output){
+    m_output = output;
+}
+
 void Gate::setOutputFunction(bool (*outputFunction)(std::vector<bool> ancestorOutputs)){
     m_outputFunction = outputFunction;
 }

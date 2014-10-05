@@ -18,6 +18,7 @@ class Gate: public Thread{
         void display(unsigned int indentation = 0) const;
         void update();
         void setName(const char* name);
+        void setOutput(bool output);
         void setOutputFunction(bool (*outputFunction)(std::vector<bool> ancestorOutputs));
 
     private:
