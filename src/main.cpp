@@ -9,65 +9,32 @@ using namespace std;
 
 int main(){
 
-    Gate true1("true", true);
-    Gate true2("true", true);
+    Gate R0("R", false);
+    Gate R1("l", true);
 
-    Gate false1("false", false);
-    Gate false2("false", false);
+    Gate S0("S", false);
+    Gate S1("S", true);
 
-    /* AND */
-    AndGate and1;
-    true1.addSuccessor(&and1);
-    true2.addSuccessor(&and1);
-    true1.addSuccessor(&and1);
-    and1.display();
+    OrGate or1("or1");
+    OrGate or2("or2");
+    NotGate not1("not1");
+    NotGate not2("not2");
+    or1.addSuccessor(&not1);
+    or2.addSuccessor(&not2);
+    not1.addSuccessor(&or2);
+    not2.addSuccessor(&or1);
 
-    /* OR */
-    OrGate or1;
-    true1.addSuccessor(&or1);
-    false1.addSuccessor(&or1);
-    false1.addSuccessor(&or1);
-    false2.addSuccessor(&or1);
-    or1.display();
+    R1.addSuccessor(&or1);
+    S0.addSuccessor(&or2);
 
-    /* NOT */
-    NotGate not1;
-    true2.addSuccessor(&not1);
-    true1.addSuccessor(&not1);
-    not1.display();
-
-    /* NOT AND */
-    NotGate not2;
-    and1.addSuccessor(&not2);
-    and1.display();
-
-    /* CLOCK */
-    NotGate not3;
-    ClockGate clock1;
-    clock1.setFrequency(100);
-    clock1.addSuccessor(&not3);
-
-    true1.start();
-    false1.start();
-    and1.start();
     or1.start();
+    or2.start();
     not1.start();
     not2.start();
-    not3.start();
-    clock1.start();
 
     while(true){
-        not3.display();
+        not1.display();
+        not2.display();
     }
 
-    true1.join();
-    false1.join();
-    and1.join();
-    or1.join();
-    not1.join();
-    not2.join();
-    not3.join();
-    clock1.join();
-
-    return 0;
 }

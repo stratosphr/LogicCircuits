@@ -40,14 +40,16 @@ void Gate::addSuccessor(Gate* successor){
     m_successors.push_back(successor);
 }
 
-void Gate::display(unsigned int indentation) const{
+void Gate::display(unsigned int indentation, bool displayChildren) const{
     std::cout << m_name << "[" << m_output << "]" << std::endl;
-    for(unsigned int i=0; i<m_successors.size(); i++){
-        for(unsigned int j=0; j<indentation; j++){
-            std::cout << "    ";
+    if(displayChildren){
+        for(unsigned int i=0; i<m_successors.size(); i++){
+                for(unsigned int j=0; j<indentation; j++){
+                    std::cout << "    ";
+                }
+                std::cout << "--> ";
+                m_successors[i]->display(indentation + 1);
         }
-        std::cout << "--> ";
-        m_successors[i]->display(indentation + 1);
     }
 }
 

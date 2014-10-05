@@ -15,7 +15,7 @@ class Gate: public Thread{
         std::vector<Gate*> getSuccessors() const;
         virtual void run();
         void addSuccessor(Gate* successor);
-        void display(unsigned int indentation = 0) const;
+        void display(unsigned int indentation = 0, bool displayChildren = false) const;
         void update();
         void setName(const char* name);
         void setOutput(bool output);
