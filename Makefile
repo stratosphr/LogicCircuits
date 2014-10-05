@@ -7,7 +7,7 @@ GCC := g++
 GCC_ARGS := -Wall -Wextra
 SRC_FILES := $(wildcard $(SRC)/*.cpp) 
 OBJ_FILES := $(patsubst $(SRC)/%.cpp,$(OBJ)/%.o,$(SRC_FILES))
-LIBS := #-lglut -lGLU
+LIBS := -lcunit #-lglut -lGLU
 TREE := $(OBJ) $(BIN)
 
 all: $(TREE) $(EXE)
