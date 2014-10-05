@@ -1,7 +1,6 @@
 #include <iostream>
 #include "orGate.h"
 #include "notGate.h"
-#include "clockGate.h"
 
 using namespace std;
 
