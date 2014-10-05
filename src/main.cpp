@@ -2,16 +2,9 @@
 #include "andGate.h"
 #include "orGate.h"
 #include "notGate.h"
+#include "thread.h"
 
 using namespace std;
-
-bool notFunction(std::vector<bool> ancestorOutputs){
-    if(ancestorOutputs.size() == 0){
-        return true;
-    }else{
-        return !ancestorOutputs[0];
-    }
-}
 
 int main(){
 
