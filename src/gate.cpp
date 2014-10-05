@@ -10,11 +10,20 @@ const char* Gate::getName() const{
     return m_name;
 }
 
-std::vector<Gate> Gate::getSuccessors() const{
+std::vector<Gate*> Gate::getAncestors() const{
+    return m_ancestors;
+}
+
+std::vector<Gate*> Gate::getSuccessors() const{
     return m_successors;
 }
 
-void Gate::addSuccessor(Gate successor){
+void Gate::addAncestor(Gate* ancestor){
+    m_ancestors.push_back(ancestor);
+}
+
+void Gate::addSuccessor(Gate* successor){
+    successor->addAncestor(this);
     m_successors.push_back(successor);
 }
 
@@ -25,6 +34,10 @@ void Gate::display(unsigned int indentation) const{
             std::cout << "    ";
         }
         std::cout << "--> ";
-        m_successors[i].display(indentation + 1);
+        m_successors[i]->display(indentation + 1);
     }
+}
+
+void Gate::setName(const char* name){
+    m_name = name;
 }
