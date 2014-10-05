@@ -21,7 +21,7 @@ int main(){
     not1.addSuccessor(&or2);
     not2.addSuccessor(&or1);
 
-    /* R = 1, S = 1 */
+    /* R = 1, S = 0 */
     R1.addSuccessor(&or1);
     S0.addSuccessor(&or2);
 
