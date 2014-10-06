@@ -44,11 +44,11 @@ void Gate::display(unsigned int indentation, bool displayChildren) const{
     std::cout << m_name << "[" << m_output << "]" << std::endl;
     if(displayChildren){
         for(unsigned int i=0; i<m_successors.size(); i++){
-                for(unsigned int j=0; j<indentation; j++){
-                    std::cout << "    ";
-                }
-                std::cout << "--> ";
-                m_successors[i]->display(indentation + 1);
+            for(unsigned int j=0; j<indentation; j++){
+                std::cout << "    ";
+            }
+            std::cout << "--> ";
+            m_successors[i]->display(indentation + 1);
         }
     }
 }
