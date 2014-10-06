@@ -8,12 +8,25 @@ Gate::Gate(const char* name, bool defaultOutput):
 {
 }
 
+Gate::~Gate(){
+}
+
 bool Gate::getOutput() const{
     return m_output;
 }
 
 const char* Gate::getName() const{
     return m_name;
+}
+
+sf::CircleShape Gate::getShape() const{
+    sf::CircleShape shape(10.f);
+    if(getOutput() == true){
+        shape.setFillColor(sf::Color::Green);
+    }else{
+        shape.setFillColor(sf::Color::Red);
+    }
+    return shape;
 }
 
 std::vector<Gate*> Gate::getAncestors() const{

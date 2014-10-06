@@ -1,6 +1,7 @@
 #ifndef GATE_H
 #define GATE_H
 
+#include <SFML/Graphics.hpp>
 #include <vector>
 #include "thread.h"
 
@@ -9,8 +10,10 @@ class Gate: public Thread{
     public:
 
         Gate(const char* name = "gate", bool defaultOutput = false);
+        ~Gate();
         bool getOutput() const;
         const char* getName() const;
+        sf::CircleShape getShape() const;
         std::vector<Gate*> getAncestors() const;
         std::vector<Gate*> getSuccessors() const;
         virtual void run();
