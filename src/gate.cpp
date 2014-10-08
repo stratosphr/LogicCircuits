@@ -4,8 +4,8 @@
 Gate::Gate(const char* name, const bool defaultOutput):
     Thread(),
     m_notified(false),
-    m_output(defaultOutput),
-    m_name(name)
+    m_name(name),
+    m_output(defaultOutput)
 {
     start();
 }
@@ -18,7 +18,6 @@ void Gate::run(){
     while(true){
         while(!m_notified){
         }
-        std::cout << m_name << " notified !" << std::endl;
         m_notified = false;
         update();
     }
@@ -36,15 +35,12 @@ void Gate::display() const{
 
 void Gate::update(){
     bool previousOutput = m_output;
-    std::cout << previousOutput << "->";
     m_output = evaluateOutput();
-    std::cout << m_output << std::endl;
     if(m_output != previousOutput){
         for(unsigned int i=0; i<m_successors.size(); i++){
             m_successors[i]->notify();
         }
     }
-    display();
 }
 
 void Gate::notify(){

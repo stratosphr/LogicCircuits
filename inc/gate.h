@@ -13,21 +13,21 @@ class Gate: public Thread{
         virtual void run();
         void addSuccessor(Gate* successor);
         void display() const;
+        void notify();
 
     private:
 
         bool m_notified;
-        bool m_output;
         const char* m_name;
-        std::vector<Gate*> m_successors;
         virtual bool evaluateOutput() const = 0;
         void addAncestor(Gate* ancestor);
-        void notify();
         void update();
 
     protected:
 
+        bool m_output;
         std::vector<Gate*> m_ancestors;
+        std::vector<Gate*> m_successors;
 
 };
 

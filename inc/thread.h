@@ -12,6 +12,7 @@ class Thread{
         Thread();
         void join();
         void start();
+        void yield();
         virtual void run() = 0;
 
     private:

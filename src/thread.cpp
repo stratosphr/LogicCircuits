@@ -10,3 +10,7 @@ void Thread::join(){
 void Thread::start(){
     m_thread = std::thread(&Thread::run, this);
 }
+
+void Thread::yield(){
+    std::this_thread::yield();
+}
