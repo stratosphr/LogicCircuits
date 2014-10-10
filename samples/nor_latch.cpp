@@ -1,38 +1,51 @@
 #include <iostream>
-#include "orGate.h"
+#include "trueGate.h"
+#include "falseGate.h"
 #include "notGate.h"
+#include "orGate.h"
+#include "watch.h"
+#include <unistd.h>
 
-using namespace std;
+int main(int argc, char* argv[]){
 
-int main(){
+    (void) argc;
+    (void) argv;
 
-    Gate R0("R", false);
-    Gate R1("l", true);
-
-    Gate S0("S", false);
-    Gate S1("S", true);
+    TrueGate R1("R1");
+    FalseGate R0("R0");
+    TrueGate S1("S1");
+    FalseGate S0("S0");
 
     OrGate or1("or1");
+    NotGate not1(" Q");
     OrGate or2("or2");
-    NotGate not1("not1");
-    NotGate not2("not2");
+    NotGate not2("/Q");
+
+    R0.addSuccessor(&or1);
     or1.addSuccessor(&not1);
-    or2.addSuccessor(&not2);
     not1.addSuccessor(&or2);
+    S0.addSuccessor(&or2);
+    or2.addSuccessor(&not2);
     not2.addSuccessor(&or1);
 
-    /* R = 1, S = 0 */
-    R1.addSuccessor(&or1);
-    S0.addSuccessor(&or2);
+    // Prints the first state
+    usleep(2000000);
+    not1.display();
+    not2.display();
+    usleep(2000000);
 
-    or1.start();
-    or2.start();
-    not1.start();
-    not2.start();
+    // Prints the new states
+    Watch watch1(&not1);
+    Watch watch2(&not2);
 
-    while(true){
-        not1.display();
-        not2.display();
-    }
+    R1.join();
+    R0.join();
+    S1.join();
+    S0.join();
+    or1.join();
+    not1.join();
+    or2.join();
+    not2.join();
 
+    return 0;
 }
